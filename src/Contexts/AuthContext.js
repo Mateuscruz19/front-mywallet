@@ -14,3 +14,5 @@ function AuthProvider({children}){
 }
 
 export default AuthProvider;
+
+// Funcao para transportar o token de usuario entre os componentes.

@@ -11,3 +11,6 @@ export default function RefreshProvider({ children }) {
     </RefreshContext.Provider>
   );
 }
+
+
+// Funcao global para recarregar a pagina a cada REFRESH.
