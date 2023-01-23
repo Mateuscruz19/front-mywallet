@@ -4,9 +4,9 @@ import styled from "styled-components";
 import { AuthContext } from "../Contexts/AuthContext";
 import { createTransaction } from "../services/transactions";
 
-export default function Transactions() {
+export default function Transactions(props) {
 
-  const { token } = useContext(AuthContext);
+    const { token } = useContext(AuthContext);
     const { type } = useParams();
     const [form, setForm] = useState({});
     const navigate = useNavigate();

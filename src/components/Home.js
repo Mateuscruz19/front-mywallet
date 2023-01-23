@@ -8,9 +8,8 @@ import { findAllTransactions } from "../services/transactions";
 
 export default function Home() {
 
-  const [user, setUser] = useState({});
   const [transactions, setTransactions] = useState([]);
-  const { token, setToken } = useContext(AuthContext);
+  const { token, setToken,user, setUser } = useContext(AuthContext);
   const { refresh } = useContext(RefreshContext);
   const [total, setTotal] = useState(0);
 
@@ -22,6 +21,7 @@ export default function Home() {
       navigate("/signin");
     }
     const promisse = await findAllTransactions(token);
+    console.log(promisse)
     if (promisse.status === 401) {
       alert("Token inválido, faça o login novamente!")
       setTimeout(() => {

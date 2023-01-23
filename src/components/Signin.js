@@ -29,8 +29,10 @@ export default function Signin() {
 
       if(res.data.message) return console.log(res.data.message)
 
-     setToken(res.data.token);
-      navigate("/");
+     console.log(res.data)
+     console.log(form)
+     setToken(res.data);
+      navigate("/teste");
     });
   }
   

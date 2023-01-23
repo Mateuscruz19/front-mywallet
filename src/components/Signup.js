@@ -9,17 +9,26 @@ export default function Signup() {
     const navigate = useNavigate();
 
     function handleForm({ value, name }) {
-        setForm({
-          ...form,
-          [name]: value,
-        });
-      }
+      setForm({...form,[name]: value,});
+    }
 
-    function handleSendForm(event) {
+    function handleSendForm (event) {
         event.preventDefault();
+        console.log(form)
+        if(!form.name || !form.email || !form.password){
+          return alert("Preencha os campos corretamente");
+        }
+        console.log(form)
         signUp(form).then((res) => {
-          navigate("/singin");
-        });
+          console.log(res)
+          alert(res.data)
+          navigate("/signin");
+        })
+        .catch((err) => {
+         err.response.data.map((e) => {
+          alert(e)
+         })
+        })
       }
 
     return (
