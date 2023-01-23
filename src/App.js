@@ -9,19 +9,22 @@ import AuthProvider from "./Contexts/AuthContext";
 import Teste from "./components/Teste";
 
 export default function App() {
-  return (<>
+  return (
+    <>
       <GlobalStyle />
       <RefreshProvider>
         <BrowserRouter>
-         <AuthProvider>
+        <AuthProvider>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/signin" element={<Signin />} />
-            <Route path="/teste" element={<Teste />} />
-            <Route path="/transactions/:type" element={<Transactions />} />
+            <Route path="/transactions/:type" element={<Transactions />}/>
+            <Route path="/teste" element={<Teste/>}/>
           </Routes>
           </AuthProvider>
         </BrowserRouter>
       </RefreshProvider>
-      </>)}
+    </>
+  );
+}

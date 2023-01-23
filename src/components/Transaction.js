@@ -4,13 +4,14 @@ import styled from "styled-components";
 import { AuthContext } from "../Contexts/AuthContext";
 import { createTransaction } from "../services/transactions";
 
-export default function Transactions(props) {
+export default function Transactions() {
 
-    const { token } = useContext(AuthContext);
+    const { Token } = useContext(AuthContext);
     const { type } = useParams();
     const [form, setForm] = useState({});
     const navigate = useNavigate();
 
+    // ENVIAR DADOS DOS INPUTS PRO FORM
     function handleForm({ value, name }) {
         setForm({
           ...form,
@@ -18,15 +19,13 @@ export default function Transactions(props) {
         });
       }
 
+    // ENVIAR FORM PRA API
+
       function handleSendForm(e) {
         e.preventDefault();
-        createTransaction(form, type, token).then((res) => {
+        createTransaction(form, type, Token).then((res) => {
           if (res.status === 401) return alert("Token invalido")
-          if (res.status === 400) {
-            res.data.forEach((item) => {
-              return console.log("Error")
-            });
-          }
+          if (res.status === 400) return console.log("Error")
           navigate("/");
         });
       }

@@ -9,19 +9,21 @@ import { findAllTransactions } from "../services/transactions";
 export default function Home() {
 
   const [transactions, setTransactions] = useState([]);
-  const { token, setToken,user, setUser } = useContext(AuthContext);
+  const { Token, setToken,user, setUser } = useContext(AuthContext);
   const { refresh } = useContext(RefreshContext);
   const [total, setTotal] = useState(0);
 
   const navigate = useNavigate();
 
     // Funcao de carregar as transações.
-  async function getTransactions() {
-    if (!token) {
-      navigate("/signin");
-    }
-    const promisse = await findAllTransactions(token);
-    console.log(promisse)
+
+   async function getTransactions() {
+
+     if (!Token) {
+       navigate("/signin");
+     }
+
+   const promisse = await findAllTransactions(Token);
     if (promisse.status === 401) {
       alert("Token inválido, faça o login novamente!")
       setTimeout(() => {
@@ -40,8 +42,9 @@ export default function Home() {
       }
     });
 
-    setTotal(total);
-  }
+    console.log(promisse)
+     setTotal(total);
+   }
 
      // Função de limpeza de token
     function Leave() {
@@ -55,16 +58,17 @@ export default function Home() {
       }
 
       // Recarrega as mensagens a cada atualização
-      useEffect(() => {
-        getTransactions();
-      }, [refresh]);
+
+       useEffect(() => {
+         getTransactions();
+       }, [refresh]);
     
 
     return(
         <>
         <HomeStyled>
         <header>
-            <h1>Olá, {user.name}</h1>
+            <h1>Olá,{user.name}</h1>
             <ion-icon name="log-out-outline" onClick={Leave}></ion-icon>
         </header>
 

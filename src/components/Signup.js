@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { signUp } from "../services/Auth.js";
+import logo from "../images/LOGO.png"
 
 export default function Signup() {
 
@@ -26,50 +27,44 @@ export default function Signup() {
         })
         .catch((err) => {
          err.response.data.map((e) => {
-          alert(e)
+          return alert(e)
          })
         })
       }
 
     return (
         <>
-        <Container>
-            <Form autoComplete="off">
-                <MainTitle>MyWallet</MainTitle>
-
-         <Input placeholder="Digite seu nome" name="name" type="text"
+        <Background>
+        <Form autoComplete="off">
+          <LogoA width={"150px"} src={logo} alt="Logo"></LogoA>
+                <ConteinerTop>
+                    <LoginText>Registro</LoginText>
+                    <LoginDescription>Coloque seus dados para se cadastrar no site.</LoginDescription>
+                </ConteinerTop>
+                <ContainerBot>
+                    <TextPass>Nome</TextPass>
+                    <Senha placeholder="Digite seu nome" name="name" type="text"
          onChange={(name) => handleForm({ name: name.target.name, value: name.target.value})}>
-         </Input>
-
-         <Input placeholder="Digite seu e-mail" name="email" type="email"
+         </Senha>
+                    <TextEmail>Email</TextEmail>
+                    <Email placeholder="Digite seu e-mail" name="email" type="email"
         onChange={(email) => handleForm({name: email.target.name,value: email.target.value, })}>
-        </Input>
-
-        <Input placeholder="Digite sua senha" name="password" type="password" 
-        onChange={(e) => handleForm({name: e.target.name, value: e.target.value,})}>
-        </Input>
-
-        <Button onClick={handleSendForm}>CADASTRAR</Button>
-          </Form>
-      <h1>Já tem uma conta?
-        <span><Link className="link" to="/signin"> Entre agora!</Link></span>
-      </h1>
-        </Container>
+        </Email>
+                    <TextPass>Senha</TextPass>
+                    <Senha placeholder="Digite sua senha" name="password" type="password" 
+                    onChange={(e) => handleForm({name: e.target.name, value: e.target.value,})}>
+                    </Senha>
+                <Entrar onClick={handleSendForm}><p>Registrar-se</p></Entrar>
+                <Link to="/signin">
+                <RegisterBox>Já tem uma conta?<span>Logue!</span></RegisterBox>
+                </Link>
+                </ContainerBot>
+                </Form>
+            </Background>
         </>
     )
 }
 
-const Container = styled.div`
-
-  height: 100vh;
-  width: 90%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
-`;
 
 const Form = styled.form`
 
@@ -82,38 +77,176 @@ const Form = styled.form`
 
 `;
 
-const MainTitle = styled.p`
+const Background = styled.main`
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    margin-top:50px;
+`
+const LogoA = styled.img`
+    width:250px;
+    margin-top:-15px;
+    margin-bottom:20px;
+`
+const ConteinerTop = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+    width: 330px;
+    height: 71px;
+`
+const LoginText = styled.p`
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+    letter-spacing: 0.01em;
+    text-transform: capitalize;
+    color: #344054;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+`
 
-  font-size: 33px;
-  font-weight: 700;
-  color: #FFFFFF;
-  margin-bottom:15px;
+const LoginDescription = styled.p`
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+`
 
-`;
+const ContainerBot = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+    margin-top:10px;
+`
 
-const Input = styled.input`
+  const TextEmail = styled.p`
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #344054;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  `
+  const TextPass = styled.p`
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  margin-top:10px;
+  `
 
-  width: 100%;
-  margin-bottom:7px;
-  font-size: 15px;;
-  padding: 10px;
-  border: 1px solid #FFFFFF;
+
+const Email = styled.input`
+    box-sizing: border-box;
+    width: 327px;
+    height: 44px;
+    border: 1px solid #D0D5DD;
+    border-radius: 8px;
+    &::placeholder{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #667085;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    }
+`
 
 
-`;
+const Senha = styled.input`
+    box-sizing: border-box;
+    width: 327px;
+    height: 44px;
+    border: 1px solid #D0D5DD;
+    border-radius: 8px;
+    &::placeholder{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #667085;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    }
+`
 
-const Button = styled.button`
 
-  width: 100%;
-  background-color: #a328d6;
-  font-weight: 600;
-  color: #FFFFFF;
-  cursor: pointer;
-  border-radius: 10px;
-  padding: 7px;
-  font-size: 17px;
-  margin-top: 15px;
-  outline: none;
-  border: none;
+const Entrar = styled.button`
+    margin-top:20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 327px;
+    height: 44px;
+    background: #000;
+    outline:none;
+    border:none;
+    border-radius: 8px;
+    cursor: pointer;
+    p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    }
+`
 
-`;
+
+const RegisterBox = styled.p`
+    margin-top:15px;
+    width: 327px;
+    height: 21px;
+    left: 24px;
+    top: 694px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    color: #344054;
+    cursor: pointer;
+    span{
+        color:#E2CAFC;
+    }
+    &:hover{
+        text-decoration: underline;
+        text-decoration-color:#5429FF;
+    }
+`
