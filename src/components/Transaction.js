@@ -25,7 +25,7 @@ export default function Transactions() {
         e.preventDefault();
         createTransaction(form, type, Token).then((res) => {
           if (res.status === 401) return alert("Token invalido")
-          if (res.status === 400) return console.log("Error")
+          if (res.status === 400) return console.log("Erro,revise os dados colocados.")
           navigate("/");
         });
       }

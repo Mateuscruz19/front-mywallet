@@ -35,6 +35,7 @@ body {
 body,html{
 	width: 100%;
 	height: 100vh;
+	background-color:#181A1B;
 
 }
 ol, ul {

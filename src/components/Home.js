@@ -104,15 +104,8 @@ export default function Home() {
 
 
 
-
-
-
-
-
-
 const HomeStyled = styled.main`
 
-    background-color: #8c11be;
     padding:15px;
 
     header {
@@ -148,12 +141,12 @@ const HomeStyled = styled.main`
 const Button = styled.button`
 
     border-radius: 9px;
-    background-color: #a328d6;
+    background-color: #FFFFFF;
     padding: 15px;
     font-size: 18px;
     margin-top: 15px;
     font-weight: 600;
-    color: #FFFFFF;
+    color: #000;
     width: 155px;
     height: 114px;
     outline: none;
@@ -169,7 +162,7 @@ const Button = styled.button`
 const Transactions = styled.article`
 
     height: 600px;
-    background-color: #000;
+    background-color: white;
     color: #FFF;
     border-radius: 0.3rem;
     padding: 1rem;
