@@ -12,28 +12,30 @@ export default function Signin() {
     const { setToken } = useContext(AuthContext);
 
 
-
   const navigate = useNavigate();
 
 
   function handleForm({ value, name }) {
-    setForm({
-      ...form,
-      [name]: value,
-    });
+    setForm({...form,[name]: value,});
   }
 
   function handleSendForm(e) {
     e.preventDefault();
+    if(!form.email || !form.password){
+      return alert("Preencha os campos corretamente");
+    }
+
     signIn(form).then((res) => {
-
-      if(res.data.message) return console.log(res.data.message)
-
-     console.log(res.data)
-     console.log(form)
+      if(res.data === "Unauthorized") return alert("Verifique os dados inseridos")
+      console.log(res);
+      console.log(res.data);
      setToken(res.data);
       navigate("/teste");
-    });
+    }).catch((err) => {
+      err.response.data.map((e) => {
+      return alert(e)
+      })
+     })
   }
   
 
